@@ -1,0 +1,32 @@
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+import { pool } from './db.js';
+import auth from './routes/auth.js';
+import companies from './routes/companies.js';
+import users from './routes/users.js';
+import dashboard from './routes/dashboard.js';
+import settings from './routes/settings.js';
+import cnpj from './routes/cnpj.js';
+dotenv.config();
+const app = express();
+app.use(helmet({contentSecurityPolicy:{useDefaults:true,directives:{
+  "script-src":["'self'"],"img-src":["'self'","data:"],"connect-src":["'self'"],"style-src":["'self'"]
+}}}));
+app.use(cors());
+app.use(express.json({ limit:'10mb' }));
+const __filename = fileURLToPath(import.meta.url); const __dirname = path.dirname(__filename);
+app.use('/uploads/logos', express.static(path.join(__dirname,'storage/logos')));
+app.use(express.static(path.join(__dirname,'../public')));
+app.use('/api/auth', auth);
+app.use('/api/companies', companies);
+app.use('/api/users', users);
+app.use('/api/dashboard', dashboard);
+app.use('/api/settings', settings);
+app.use('/api/cnpj', cnpj);
+app.get('/', (_,res)=>res.sendFile(path.join(__dirname,'../public/login.html')));
+app.get('/api/health', async (_,res)=>{try{const [r]=await pool.query('SELECT 1 ok'); res.json({ok:true, db:r[0].ok===1});}catch(e){res.status(500).json({ok:false,error:e.message});}});
+const PORT=process.env.PORT||3000; app.listen(PORT, ()=>console.log(`TCCv5 r2 up on http://localhost:${PORT}`));

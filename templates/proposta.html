@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Proposta de Admissão de Sócio</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  body { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #111; }
+  h1 { text-align: center; font-size: 18px; margin: 0 0 14px; }
+  .label { font-size: 10px; color: #666; margin-bottom: 2px; }
+  .field { border-bottom: 1px solid #bdbdbd; padding: 3px 0 4px; margin-bottom: 10px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .section { margin-top: 14px; }
+  .sub { font-weight: 700; margin: 10px 0 6px; }
+  .small { font-size: 10px; color: #333; text-align: justify; line-height: 1.25; }
+  .row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .muted { color: #666; font-size: 10px; }
+  .sign { margin-top: 50px; }
+  .line { border-top: 1px solid #444; width: 70mm; margin-top: 28px; }
+  .checkboxes { display: grid; grid-template-columns: repeat(6, max-content); gap: 12px 18px; align-items: center; }
+  .box { width: 12px; height: 12px; border: 1px solid #333; display: inline-block; vertical-align: middle; margin-right: 6px; }
+  .checked { background: #111; }
+</style>
+</head>
+<body>
+  <h1>PROPOSTA DE ADMISSÃO DE SÓCIO</h1>
+
+  <div class="section">
+    <div class="label">Razão Social</div>
+    <div class="field">{{corporate_name}}</div>
+
+    <div class="label">Denominação Comercial</div>
+    <div class="field">{{fantasy_name}}</div>
+
+    <div class="grid2">
+      <div>
+        <div class="label">Endereço</div>
+        <div class="field">{{address}}</div>
+      </div>
+      <div>
+        <div class="label">CEP</div>
+        <div class="field">{{zip}}</div>
+      </div>
+    </div>
+
+    <div class="label">E-mail</div>
+    <div class="field">{{email}}</div>
+
+    <div class="grid2">
+      <div>
+        <div class="label">Instagram</div>
+        <div class="field">{{instagram}}</div>
+      </div>
+      <div>
+        <div class="label">Telefone</div>
+        <div class="field>{{phone}}</div>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div>
+        <div class="label">Cidade</div>
+        <div class="field">{{city}}</div>
+      </div>
+      <div>
+        <div class="label">Estado</div>
+        <div class="field">{{state}}</div>
+      </div>
+      <div>
+        <div class="label">CEL</div>
+        <div class="field">{{cel}}</div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <div class="label">WhatsApp</div>
+        <div class="field">{{whatsapp}}</div>
+      </div>
+      <div>
+        <div class="label">CNPJ</div>
+        <div class="field">{{cnpj}}</div>
+      </div>
+    </div>
+
+    <div class="label">Inscrição Estadual</div>
+    <div class="field">{{ie}}</div>
+
+    <div class="label">Ramo de Atividade</div>
+    <div class="field">{{business_activity}}</div>
+
+    <div class="grid3">
+      <div>
+        <div class="label">Data Fundação</div>
+        <div class="field">{{foundation_date}}</div>
+      </div>
+      <div>
+        <div class="label">Quantidade de Funcionários</div>
+        <div class="field">{{employees_qty}}</div>
+      </div>
+      <div>
+        <div class="label">Setor</div>
+        <div class="field">{{sector}}</div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <div class="label">Esc. de Contabilidade</div>
+        <div class="field">{{accounting_firm}}</div>
+      </div>
+      <div>
+        <div class="label">Indicação de</div>
+        <div class="field">{{referral}}</div>
+      </div>
+    </div>
+
+    <div class="label">Observação</div>
+    <div class="field">{{notes}}</div>
+  </div>
+
+  <div class="section">
+    <div class="sub">SÓCIOS OU DIRETORES</div>
+    {{#partners}}
+      <div class="grid2">
+        <div>
+          <div class="label">Nome</div>
+          <div class="field">{{name}}</div>
+        </div>
+        <div>
+          <div class="label">CPF</div>
+          <div class="field">{{cpf}}</div>
+        </div>
+      </div>
+    {{/partners}}
+    {{^partners}}
+      <div class="grid2">
+        <div><div class="label">Nome</div><div class="field">&nbsp;</div></div>
+        <div><div class="label">CPF</div><div class="field">&nbsp;</div></div>
+      </div>
+      <div class="grid2">
+        <div><div class="label">Nome</div><div class="field">&nbsp;</div></div>
+        <div><div class="label">CPF</div><div class="field">&nbsp;</div></div>
+      </div>
+    {{/partners}}
+  </div>
+
+  <div class="section">
+    <div class="sub">Serviços Contratados</div>
+    <div class="checkboxes">
+      <div><span class="box {{#svc_spc}}checked{{/svc_spc}}"></span>SPC</div>
+      <div><span class="box {{#svc_nfe}}checked{{/svc_nfe}}"></span>NF-e</div>
+      <div><span class="box {{#svc_nfce}}checked{{/svc_nfce}}"></span>NFC-e</div>
+      <div><span class="box {{#svc_mdfe}}checked{{/svc_mdfe}}"></span>MDF-e</div>
+      <div><span class="box {{#svc_cte}}checked{{/svc_cte}}"></span>CT-e</div>
+      <div><span class="box {{#svc_cfe}}checked{{/svc_cfe}}"></span>CF-e</div>
+    </div>
+
+    <div class="label" style="margin-top:10px;">OBS</div>
+    <div class="field">{{services_obs}}</div>
+
+    <div class="row">
+      <div>
+        <div class="label">Tipo</div>
+        <div class="field">{{plan_type}}</div>
+      </div>
+      <div>
+        <div class="label">Vlr.</div>
+        <div class="field">{{plan_value}}</div>
+      </div>
+    </div>
+
+    <div class="label">Vencimento</div>
+    <div class="field">{{due_date}}</div>
+  </div>
+
+  <div class="section small">
+    Solicito(amos) inscrição como SÓCIO(S) CONTRIBUINTE(S) DA ASSOCIAÇÃO COMERCIAL, INDUSTRIAL E AGRÍCOLA DE UMUARAMA – ACIU, ciente(s) de que...
+  </div>
+
+  <div class="section grid3">
+    <div>
+      <div class="label">Umuarama-PR / Data</div>
+      <div class="field">{{data_local}}</div>
+    </div>
+    <div></div><div></div>
+  </div>
+
+  <div class="section sign">
+    {{#signature}}
+      <img src="data:image/png;base64,{{signature}}" style="width: 80mm;"/>
+    {{/signature}}
+    <div class="line"></div>
+    <div class="muted">Carimbo e Assinatura da Firma Proponente</div>
+  </div>
+
+  <div class="section grid2" style="margin-top:30px;">
+    <div>
+      <div class="line"></div>
+      <div class="muted">Presidente:</div>
+    </div>
+    <div>
+      <div class="line"></div>
+      <div class="muted">Secretário:</div>
+    </div>
+  </div>
+
+  <div class="muted" style="margin-top:32px; text-align:center;">
+    Gerado em {{generated_at}} • Versão {{version}}
+  </div>
+</body>
+</html>
